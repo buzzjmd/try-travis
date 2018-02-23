@@ -11,11 +11,13 @@ install:
   - echo === Install.
   - pip install tox
   - tox --version
+  - pip install codecov
+  - codecov --version
 before_script:
   - echo === Before Script.
   - python --version
 script:
-  - echo === Run Test Script 1. TOXPYTHON=$TOXPYTHON
+  - echo === Run Test Script. TOXPYTHON=$TOXPYTHON
   - python --version
 after_script:
   - echo === After Script.
@@ -23,9 +25,10 @@ after_failure:
   - echo === After Failure.
 after_success:
   - echo === After Success.
+  - codecov
 jobs:
   include:
     - python: '2.7'
       env: TOXPYTHON=py27
-    - python: '3.4'
-      env: TOXPYTHON=py34
+    - python: '3.6'
+      env: TOXPYTHON=py36
