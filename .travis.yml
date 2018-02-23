@@ -27,7 +27,7 @@ after_failure:
 after_success:
   - echo === After Success.
   - codecov
-jobs:
+matrix:
   include:
     - python: '2.7'
       env: TOXENV=py27
