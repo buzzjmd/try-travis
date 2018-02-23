@@ -19,6 +19,7 @@ before_script:
 script:
   - echo === Run Test Script. TOXPYTHON=$TOXPYTHON
   - python --version
+  - tox -v
 after_script:
   - echo === After Script.
 after_failure:
