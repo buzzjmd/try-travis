@@ -16,8 +16,7 @@ before_script:
   - echo === Before Script.
   - python --version
 script:
-  - echo === Run Script.
-  - python -c "print('Hello world!')"
+  - echo === Run Test Script 1.
 after_script:
   - echo === After Script.
 after_failure:
@@ -26,8 +25,9 @@ after_success:
   - echo === After Success.
 jobs:
   include:
+    - script:
+        - echo === Run Test Script 2.
     - stage: cov
       script:
-        - python -c "print('-----------\nHello world!')"
+        - echo === Coverage Stage!
         - python --version
-        - python -c "print('-----------')"
