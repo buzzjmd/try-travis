@@ -24,3 +24,10 @@ after_failure:
   - echo === After Failure.
 after_success:
   - echo === After Success.
+jobs:
+  include:
+    - stage: cov
+      script:
+        - python -c "print('-----------\nHello world!')"
+        - python --version
+        - python -c "print('-----------')"
