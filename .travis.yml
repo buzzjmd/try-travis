@@ -32,6 +32,9 @@ jobs:
   include:
     - script:
         - echo === Run Test Script 2. TXPY=$TOXPYTHON
+        - python --version
+    - python: '3.4'
+      env: TOXPYTHON=py34
     - stage: cov
       script:
         - echo === Coverage Stage!
