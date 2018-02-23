@@ -3,7 +3,9 @@ sudo: false
 matrix:
   include:
     - python: 2.6
+      env: TOXPYTHON=py26
     - python: 3.5
+      env: TOXPYTHON=py35
 before_install:
   - echo === Before Install.
   - virtualenv --version
@@ -26,7 +28,7 @@ after_success:
 jobs:
   include:
     - script:
-        - echo === Run Test Script 2.
+        - echo === Run Test Script 2. TXPY=$TOXPYTHON
     - stage: cov
       script:
         - echo === Coverage Stage!
