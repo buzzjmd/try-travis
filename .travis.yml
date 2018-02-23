@@ -30,6 +30,6 @@ after_success:
 jobs:
   include:
     - python: '2.7'
-      env: TOXPYTHON=py27
+      env: TOXENV=py27
     - python: '3.6'
-      env: TOXPYTHON=py36
+      env: TOXENV=py36
