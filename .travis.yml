@@ -15,7 +15,8 @@ before_script:
   - echo === Before Script.
   - python --version
 script:
-  - echo === Run Test Script 1.
+  - echo === Run Test Script 1. TOXPYTHON=$TOXPYTHON
+  - python --version
 after_script:
   - echo === After Script.
 after_failure:
@@ -24,15 +25,7 @@ after_success:
   - echo === After Success.
 jobs:
   include:
-    - script:
-        - echo === Run Test Script 2. TXPY=$TOXPYTHON
-        - python --version
+    - python: '2.7'
+      env: TOXPYTHON=py27
     - python: '3.4'
       env: TOXPYTHON=py34
-      script:
-        - echo === Run Test Script 3. TXPY=$TOXPYTHON
-        - python --version
-    - stage: cov
-      script:
-        - echo === Coverage Stage!
-        - python --version
