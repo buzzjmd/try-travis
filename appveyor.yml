@@ -16,6 +16,11 @@ init:
   - "%PYTHON%/python.exe -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
 
 install:
+  # Prepend newly installed Python to the PATH of this build (this cannot be
+  # done from inside the powershell script as it would require to restart
+  # the parent CMD process).
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
   - "%PYTHON%\\python.exe -m pip install tox"
   - "%PYTHON%\\python.exe -m pip install wheel"
   - "%PYTHON%\\python.exe -m virtualenv --version"
