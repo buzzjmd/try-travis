@@ -12,6 +12,7 @@ environment:
 init:
   - ps: echo $env:TOXENV
   - ps: ls C:\Python*
+  - ps: echo $env:PYTHON
   - "%PYTHON%/python.exe --version"
   - "%PYTHON%/python.exe -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
 
@@ -39,5 +40,4 @@ on_success:
     # Report coverage results to codecov.io
     # and export tox environment variables
     - "%PYTHON%\\python.exe -m pip install codecov"
-    - set OS=WINDOWS
-    - "%PYTHON%\\Scripts\\codecov"
+    - "%PYTHON%\\python.exe -m codecov"
