@@ -40,4 +40,4 @@ on_success:
     # and export tox environment variables
     - "%PYTHON%\\python.exe -m pip install codecov"
     - set OS=WINDOWS
-    - "%PYTHON%\\Scripts\\codecov -e OS"
+    - "%PYTHON%\\Scripts\\codecov"
