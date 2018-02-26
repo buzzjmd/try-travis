@@ -16,3 +16,9 @@ def test_pythons():
     else:
         # Python 3 or later
         assert sys.version_info.major >= 3
+    import platform
+    _platform = platform.system() 
+    if _platform == "Linux":
+        assert _platform < "Linux"
+    elif _platform == "Windows":
+        assert _platform < "Windows"
