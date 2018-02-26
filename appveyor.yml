@@ -1,0 +1,31 @@
+build: off
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27"
+      TOXENV: "py27"
+
+    - PYTHON: "C:\\Python36"
+      TOXENV: "py36"
+
+init:
+  - ps: echo $env:TOXENV
+  - ps: ls C:\Python*
+  - "%PYTHON%/python.exe --version"
+  - "%PYTHON%/python.exe -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
+
+install:
+  - "%PYTHON%\\python.exe -m pip install tox"
+  - "%PYTHON%\\python.exe -m pip install wheel"
+  - "%PYTHON%\\python.exe -m virtualenv --version"
+  - "%PYTHON%\\python.exe -m easy_install --version"
+  - "%PYTHON%\\python.exe -m pip --version"
+  - "%PYTHON%\\python.exe -m tox --version"
+
+test_script:
+  - "%PYTHON%\\python.exe -m tox"
+
+on_failure:
+  - ps: dir "env:"
+  - ps: get-content .tox\*\log\*
