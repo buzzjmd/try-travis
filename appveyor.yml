@@ -29,3 +29,10 @@ test_script:
 on_failure:
   - ps: dir "env:"
   - ps: get-content .tox\*\log\*
+
+on_success:
+    # Report coverage results to codecov.io
+    # and export tox environment variables
+    - "%PYTHON%\\python.exe -m pip install codecov"
+    - set OS=WINDOWS
+    - "%PYTHON%\\python.exe -m codecov -e TOXENV OS"
