@@ -19,6 +19,6 @@ def test_pythons():
     import platform
     _platform = platform.system() 
     if _platform == "Linux":
-        assert _platform < "Linux"
+        assert _platform == "Linux"
     elif _platform == "Windows":
-        assert _platform < "Windows"
+        assert _platform == "Windows"
