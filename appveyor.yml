@@ -13,6 +13,7 @@ init:
   - ps: echo $env:TOXENV
   - ps: ls C:\Python*
   - ps: echo $env:PYTHON
+  - cmd: dir %PYTHON%
   - "%PYTHON%/python.exe --version"
   - "%PYTHON%/python.exe -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
 
