@@ -1,8 +1,5 @@
 language: python
 sudo: false
-os:
-  - linux
-  - osx
 branches:
   only:
     - codecov
@@ -34,5 +31,13 @@ matrix:
   include:
     - python: '2.7'
       env: TOXENV=py27
+      os: linux
     - python: '3.6'
       env: TOXENV=py36
+      os: linux
+    - python: '2.7'
+      env: TOXENV=py27
+      os: osx
+    - python: '3.6'
+      env: TOXENV=py36
+      os: osx
