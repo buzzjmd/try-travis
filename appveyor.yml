@@ -1,14 +1,13 @@
 environment:
   matrix:
-    - PYTHON: "C:\\Python27"
-      TOXENV: "py27"
+    - PYTHON: C:\Python27
+      TOXENV: py
 
-    - PYTHON: "C:\\Python36"
-      TOXENV: "py36"
+    - PYTHON: C:\Python36
+      TOXENV: py
 
 init:
   - ps: ls C:\Python*
-  - ps: echo $env:PYTHON
   - ps: echo $env:TOXENV
   - cmd: dir %PYTHON%
   # Prepend newly installed Python to the PATH of this build (this cannot be
@@ -19,17 +18,15 @@ init:
   - "python -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
 
 install:
-  - python -m pip install tox
-  - python -m pip install wheel
   - python -m virtualenv --version
   - python -m easy_install --version
   - python -m pip --version
-  - python -m tox --version
+  - python -m pip install tox
 
 build: off
 
 test_script:
-  - python -m tox
+  - python -m tox -v
 
 on_failure:
   - ps: dir "env:"
