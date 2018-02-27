@@ -10,19 +10,18 @@ environment:
       TOXENV: "py36"
 
 init:
-  - ps: echo $env:TOXENV
   - ps: ls C:\Python*
   - ps: echo $env:PYTHON
+  - ps: echo $env:TOXENV
   - cmd: dir %PYTHON%
-  - python --version
-  - "python -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
-
-install:
   # Prepend newly installed Python to the PATH of this build (this cannot be
   # done from inside the powershell script as it would require to restart
   # the parent CMD process).
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - python --version
+  - "python -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
 
+install:
   - python -m pip install tox
   - python -m pip install wheel
   - python -m virtualenv --version
