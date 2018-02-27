@@ -3,13 +3,18 @@
 .PHONY: test
 test: ## Run tests
 	@echo "+ $@"
-	@tox
+	@tox --develop
 
 .PHONY: clean
 clean: clean-build clean-pyc clean-pytest ## Remove all file artifacts
 
 .PHONY: clobber
 clobber: clean-cov clean-tox clean-caches clean ## Remove all file artifacts and empty caches
+
+.PHONY: clean-cov
+clean-cov: ## Remove coverage artifacts
+	@echo "+ $@"
+	@tox --develop -e clean-cov
 
 .PHONY: clean-build
 clean-build: ## Remove build artifacts
@@ -29,11 +34,6 @@ clean-pyc: ## Remove Python file artifacts
 clean-pytest: ## Remove pytest artifacts
 	@echo "+ $@"
 	@find . -type d -name '.pytest_cache' -exec rm -rf {} +
-
-.PHONY: clean-cov
-clean-cov: ## Remove coverage artifacts
-	@echo "+ $@"
-	@tox -e clean-cov
 
 .PHONY: clean-tox
 clean-tox: ## Remove tox testing artifacts
