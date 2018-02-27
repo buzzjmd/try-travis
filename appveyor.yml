@@ -1,6 +1,3 @@
-build: off
-cache:
-  - '%LOCALAPPDATA%\pip\Cache'
 environment:
   matrix:
     - PYTHON: "C:\\Python27"
@@ -29,6 +26,8 @@ install:
   - python -m pip --version
   - python -m tox --version
 
+build: off
+
 test_script:
   - python -m tox
 
@@ -41,3 +40,11 @@ on_success:
     # and export tox environment variables
     - python -m pip install codecov
     - python -m codecov
+
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+
+branches:
+  only:
+    - master
+    - /^.*-feature$/
