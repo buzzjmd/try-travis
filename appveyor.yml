@@ -14,8 +14,8 @@ init:
   - ps: ls C:\Python*
   - ps: echo $env:PYTHON
   - cmd: dir %PYTHON%
-  - "%PYTHON%/python.exe --version"
-  - "%PYTHON%/python.exe -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
+  - python --version
+  - python -c \"import struct;print(8 * struct.calcsize(\'P\'))\"
 
 install:
   # Prepend newly installed Python to the PATH of this build (this cannot be
@@ -23,15 +23,15 @@ install:
   # the parent CMD process).
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
-  - "%PYTHON%\\python.exe -m pip install tox"
-  - "%PYTHON%\\python.exe -m pip install wheel"
-  - "%PYTHON%\\python.exe -m virtualenv --version"
-  - "%PYTHON%\\python.exe -m easy_install --version"
-  - "%PYTHON%\\python.exe -m pip --version"
-  - "%PYTHON%\\python.exe -m tox --version"
+  - "python -m pip install tox"
+  - "python -m pip install wheel"
+  - "python -m virtualenv --version"
+  - "python -m easy_install --version"
+  - "python -m pip --version"
+  - "python -m tox --version"
 
 test_script:
-  - "%PYTHON%\\python.exe -m tox"
+  - "python -m tox"
 
 on_failure:
   - ps: dir "env:"
@@ -40,5 +40,5 @@ on_failure:
 on_success:
     # Report coverage results to codecov.io
     # and export tox environment variables
-    - "%PYTHON%\\python.exe -m pip install codecov"
-    - "%PYTHON%\\python.exe -m codecov"
+    - python -m pip install codecov
+    - python -m codecov
