@@ -15,7 +15,7 @@ init:
   - ps: echo $env:PYTHON
   - cmd: dir %PYTHON%
   - python --version
-  - python -c "import struct;print(8 * struct.calcsize(\'P\'))"
+  - "python -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
 
 install:
   # Prepend newly installed Python to the PATH of this build (this cannot be
