@@ -47,3 +47,6 @@ branches:
     - master
     - /^.*-feature$/
     - /^.*-maintenance$/
+
+notifications:
+  email: false
