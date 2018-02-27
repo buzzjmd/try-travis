@@ -8,7 +8,6 @@ environment:
 
 init:
   - ps: ls C:\Python*
-  - ps: echo $env:TOXENV
   - cmd: dir %PYTHON%
   # Prepend newly installed Python to the PATH of this build (this cannot be
   # done from inside the powershell script as it would require to restart
@@ -16,16 +15,17 @@ init:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - python --version
   - "python -c \"import struct;print(8 * struct.calcsize(\'P\'))\""
-
-install:
   - python -m virtualenv --version
   - python -m easy_install --version
   - python -m pip --version
+
+install:
   - python -m pip install tox
 
 build: off
 
 test_script:
+  - ps: echo $env:TOXENV
   - python -m tox -v
 
 on_failure:

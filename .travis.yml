@@ -25,15 +25,14 @@ before_install:
       . ~/py-env/bin/activate;
     fi
   - python --version
-
-install:
   - virtualenv --version
   - easy_install --version
   - pip --version
+
+install:
   - pip install tox
 
 script:
-  - python --version
   - python -m tox -v
 
 after_success:
