@@ -6,7 +6,7 @@ test: ## Run tests
 	@tox --develop
 
 .PHONY: clean
-clean: clean-build clean-pyc clean-pytest ## Remove all file artifacts
+clean: clean-build clean-pyc clean-pytest clean-docs ## Remove all file artifacts
 
 .PHONY: clobber
 clobber: clean-cov clean-tox clean-caches clean ## Remove all file artifacts and empty caches
@@ -34,6 +34,11 @@ clean-pyc: ## Remove Python file artifacts
 clean-pytest: ## Remove pytest artifacts
 	@echo "+ $@"
 	@find . -type d -name '.pytest_cache' -exec rm -rf {} +
+
+.PHONY: clean-docs
+clean-docs: ## Remove docs build artifacts
+	@echo "+ $@"
+	@rm -fr docs/_build/
 
 .PHONY: clean-tox
 clean-tox: ## Remove tox testing artifacts
