@@ -39,7 +39,8 @@ clean-pytest: ## Remove pytest artifacts
 .PHONY: clean-docs
 clean-docs: ## Remove docs build artifacts
 	@echo "+ $@"
-	@rm -fr docs/_build/
+	@find docs -type d -name 'build' -exec rm -rf {} +
+	@find docs -type d -name '_build' -exec rm -rf {} +
 
 .PHONY: clean-tox
 clean-tox: ## Remove tox testing artifacts
