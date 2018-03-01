@@ -1,7 +1,22 @@
 .DEFAULT_GOAL := help
 
 .PHONY: test
-test: ## Run tests
+test: ## Run test using the default python
+	@echo "+ $@"; \
+	if [ ! -d ".venv" ]; then virtualenv -p python .venv; fi;\
+	source .venv/bin/activate; \
+	python --version; \
+	pip install -U tox; \
+    python -m tox --develop -e py; \
+	deactivate;
+
+.PHONY: tox
+tox: ## Run tests using tox
+	@echo "+ $@"
+	@tox
+
+.PHONY: toxd
+toxd: ## Run tests using 'tox --develop'
 	@echo "+ $@"
 	@tox --develop
 
@@ -10,6 +25,7 @@ clean: clean-build clean-pyc clean-pytest clean-docs ## Remove all file artifact
 
 .PHONY: clobber
 clobber: clean-cov clean-tox clean-caches clean ## Remove all file artifacts and empty caches
+	@rm -fr .venv
 
 .PHONY: clean-cov
 clean-cov: ## Remove coverage artifacts
