@@ -22,12 +22,13 @@ clean-build: ## Remove build artifacts
 	@rm -fr build/
 	@rm -fr dist/
 	@find . -type d -name '*.egg-info' -exec rm -rf {} +
+	@find . -type f -name '*.egg' -exec rm -rf {} +
 
 .PHONY: clean-pyc
 clean-pyc: ## Remove Python file artifacts
 	@echo "+ $@"
 	@find . -type d -name '__pycache__' -exec rm -rf {} +
-	@find . -type f -name '*.py[co]' -exec rm -f {} +
+	@find . -type f -name '*.py[cod]' -exec rm -f {} +
 	@find . -name '*~' -exec rm -f {} +
 
 .PHONY: clean-pytest
