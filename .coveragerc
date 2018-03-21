@@ -1,7 +1,14 @@
-[run]
-branch = True
+[paths]
 source =
+    src/mylib
+    */site-packages/mylib
+
+[run]
+branch = true
+source =
+    mylib
     tests
+parallel = true
 
 [report]
 show_missing = true
