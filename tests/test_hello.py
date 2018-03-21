@@ -1,9 +1,19 @@
 # -*- coding: utf-8 -*-
 
-"""Hello world module tests."""
+"""Hello module tests."""
 
-import mylib.hello
+import platform
+import sys
+
+from mylib.hello import get_hello
 
 
 def test_get_hello():
-    assert mylib.hello.get_hello() == "Hello world!"
+    system = platform.system()
+    if sys.version_info.major < 3:
+        python = 'Python2 or earlier'
+    else:
+        python = 'Python3 or later'
+    assert get_hello() == "Hello {system}, I'm {python}!".format(
+        system='Mac OSX' if system == 'Darwin' else system,
+        python=python)
