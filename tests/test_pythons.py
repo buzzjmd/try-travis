@@ -4,7 +4,7 @@
 
 import sys
 
-from mylib.hello_from_python import get_hello_from_python
+from mylib.hello_python import get_hello
 
 
 def test_python_versions():
@@ -14,10 +14,6 @@ def test_python_versions():
     i.e. make sure both python2 and python3 have been tested.
     """
     if sys.version_info.major < 3:
-        # Python 2 or earlier
-        assert sys.version_info.major < 3
-        assert get_hello_from_python() == "Hello! I'm Python2 or earlier."
+        assert get_hello() == "Hello Python2 or earlier!"
     else:
-        # Python 3 or later
-        assert sys.version_info.major >= 3
-        assert get_hello_from_python() == "Hello! I'm at least Python3."
+        assert get_hello() == "Hello Python3 or later!"
