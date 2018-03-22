@@ -23,9 +23,9 @@ before_install:
     # Homebrew changed in Mach 2018, 'brew install python3' no longer works.
     # Upgrade to python3, then also install the python@2 formula as instructed
     # on the Homebrew website.
-  - which python
-  - which python2
-  - which python3
+  - which python || true
+  - which python2 || true
+  - which python3 || true
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew update;
       brew upgrade python;
