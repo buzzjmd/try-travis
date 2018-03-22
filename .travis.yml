@@ -20,31 +20,29 @@ matrix:
 
 before_install:
     # Perform the manual steps on osx to install python3 and activate venv
-    # (see http://blog.fizyk.net.pl/blog/running-python-tests-on-traviss-osx-workers.html)
-    # (see also https://github.com/pallets/flask/blob/master/.travis.yml)
+    # Homebrew changed in Mach 2018, 'brew install python3' no longer works.
+    # Upgrade to python3, then also install the python@2 formula as instructed
+    # on the Homebrew website.
+  - which python
+  - which python2
+  - which python3
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew update;
       brew upgrade python;
       if [[ "$PYBREW" == "python3" ]]; then
         python3 -m pip install -q virtualenv;
+        python3 -m virtualenv --version;
         python3 -m virtualenv -p python3 ~/py-env;
-        source ~/py-env/bin/activate;
-        pip list;
-        which python;
-        python --version;
-        which virtualenv;
-        virtualenv --version;
       else
         brew install python@2;
-        brew link --force python@2;
         python2 -m pip install -q virtualenv;
+        python2 -m virtualenv --version;
         python2 -m virtualenv -p python2 ~/py-env;
-        source ~/py-env/bin/activate;
-        pip list;
-        which python;
-        python --version;
       fi
     fi
+  - source ~/py-env/bin/activate;
+  - which python;
+    python --version;
   - easy_install --version
   - pip --version
 
