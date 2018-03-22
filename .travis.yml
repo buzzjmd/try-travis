@@ -33,16 +33,19 @@ before_install:
         python3 -m pip install -q virtualenv;
         python3 -m virtualenv --version;
         python3 -m virtualenv -p python3 ~/py-env;
+        which python3;
+        source ~/py-env/bin/activate;
       else
         brew install python@2;
+        which python2;
         python2 -m pip install -q virtualenv;
         python2 -m virtualenv --version;
         python2 -m virtualenv -p python2 ~/py-env;
+        source ~/py-env/bin/activate;
       fi
     fi
-  - source ~/py-env/bin/activate;
   - which python;
-    python --version;
+    python --version
   - easy_install --version
   - pip --version
 
