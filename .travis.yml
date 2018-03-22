@@ -31,12 +31,13 @@ before_install:
         source ~/py-env/bin/activate;
       else
         brew install python@2;
-        brew link --force;
+        brew link --force python@2;
         python2 -m pip install -q virtualenv;
         python2 -m virtualenv -p python2 ~/py-env;
         source ~/py-env/bin/activate;
       fi
     fi
+  - which python
   - python --version
   - virtualenv --version
   - easy_install --version
