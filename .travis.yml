@@ -12,7 +12,11 @@ matrix:
 
     - os: osx
       language: generic
-      env: TOXENV=py
+      env: TOXENV=py PYBREW=python2
+
+    - os: osx
+      language: generic
+      env: TOXENV=py PYBREW=python3
 
 before_install:
     # Perform the manual steps on osx to install python3 and activate venv
@@ -21,8 +25,15 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew update;
       brew upgrade python;
-      python3 -m pip install -q virtualenv;
-      python3 -m virtualenv -p python3 ~/py-env;
+      brew link 
+      if [[ "$PYBREW" == "python3" ]]; then
+        python3 -m pip install -q virtualenv;
+        python3 -m virtualenv -p python3 ~/py-env;
+      else
+        brew link --force
+        python2 -m pip install -q virtualenv;
+        python2 -m virtualenv -p python2 ~/py-env;
+      fi
       source ~/py-env/bin/activate;
     fi
   - python --version
