@@ -69,4 +69,7 @@ branches:
     - /^.*-maintenance$/
 
 notifications:
-  email: false
+  email:
+    # Select always or never
+    on_success: always
+    on_failure: always
